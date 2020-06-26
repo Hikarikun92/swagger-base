@@ -1,0 +1,50 @@
+swagger: "2.0"
+info:
+  version: "0.1"
+  title: "Example application"
+  description: "An example Swagger description file."
+
+tags:
+  - name: "person"
+    description: "Services related to people"
+#  - name: "other"
+#    description: "Other services"
+
+schemes:
+  - "https"
+  - "http"
+
+paths:
+  /person:
+    get:
+      tags:
+        - "person"
+      summary: "Lists the people registered in the system"
+      description: "Lists all the people registered in the system"
+      operationId: "findAll"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "If the search was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/Person'
+        500:
+          description: "If an internal error happened"
+
+definitions:
+  Person:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      birthDate:
+        type: "string"
+        format: "date"
+      nationality:
+        type: "string"
+      email:
+        type: "string"
+        format: "email"
